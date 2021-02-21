@@ -1,29 +1,58 @@
 """Calc game engine."""
 
-import random
+from random import randint, choice
 from operator import add, mul, sub
 
-GAME_DESCRIPTION = 'What is the result of the expression?'
+from brain_games.global_constants import QUESTION, ANSWER
 
-OPERATIONS = [(add, '+'), (sub, '-'), (mul, '*')]
 
-MIN_NUM = 1
-MAX_NUM = 20
+def get_description():
+    """Return description of game.
+
+    Returns:
+        description(string): description of game
+    """
+    return 'What is the result of the expression?'
+
+
+def get_count_rounds():
+    """Return count of game round.
+
+    Returns:
+        num (int): count of game round
+    """
+    return 3
 
 
 def get_challenge():
     """Calc game Q&A generation.
 
     generate two random numbers
-    and calculate result of random operation from list
+    and calculate result of random operation
 
     Returns:
-        question{str} : operation description;
-        answer{str} : result of operation
+        dictionary:
+            key QUESTION (string) : operation description;
+            key ANSWER (string) : result of operation
     """
-    num1 = random.randint(MIN_NUM, MAX_NUM)
-    num2 = random.randint(MIN_NUM, MAX_NUM)
-    operation, sign = random.choice(OPERATIONS)
+    num1 = randint(_min(), _max())
+    num2 = randint(_min(), _max())
+    operation, sign = _get_operators(choice)
+
     answer = str(operation(num1, num2))
-    question = '{} {} {}'.format(num1, sign, num2)
-    return (question, answer)
+    question = '{0} {1} {2}'.format(num1, sign, num2)
+
+    return {QUESTION: question, ANSWER: answer}
+
+
+def _min():
+    return 1
+
+
+def _max():
+    return 30
+
+
+def _get_operators(selector):
+    operators = [(add, '+'), (sub, '-'), (mul, '*')]
+    return selector(operators)
