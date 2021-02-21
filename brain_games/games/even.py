@@ -1,11 +1,34 @@
 """Even game engine."""
 
-import random
+from random import randint
 
-GAME_DESCRIPTION = "Answer 'yes' if number even otherwise answer 'no'."
+from brain_games.global_constants import QUESTION, ANSWER
 
-MIN_NUM = 1
-MAX_NUM = 20
+
+def _min():
+    return 1
+
+
+def _max():
+    return 30
+
+
+def get_description():
+    """Return description of game.
+
+    Returns:
+        description(string): description of game
+    """
+    return "Answer 'yes' if number even otherwise answer 'no'."
+
+
+def get_count_rounds():
+    """Return count of game round.
+
+    Returns:
+        num (int): count of game round
+    """
+    return 3
 
 
 def get_challenge():
@@ -14,10 +37,12 @@ def get_challenge():
     generate random Number and check if a Number is Even
 
     Returns:
-        question{str} : Number;
-        answer{str} : Even status
+        dictionary:
+            key QUESTION (string) : question of challenge;
+            key ANSWER (string): answer of challenge
     """
-    num = random.randint(MIN_NUM, MAX_NUM)
+    num = randint(_min(), _max())
     answer = 'no' if num % 2 else 'yes'
-    question = '{}'.format(num)
-    return (question, answer)
+    question = '{0}'.format(num)
+
+    return {QUESTION: question, ANSWER: answer}

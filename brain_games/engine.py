@@ -1,29 +1,32 @@
 """Brain Games Engine."""
 
-import prompt
-
-NUMBER_OF_STEPS = 3
+from brain_games.global_constants import ANSWER, QUESTION
 
 
-def run_game(game):
+def run_game(game, io):
     """Brain Games Engine.
 
     Executing game process
 
     Args:
-        game (function): create game question and answer
+        game (object): create game question and answer
+        io (object): input/output environment
     """
-    print('Welcome to the Brain Games!\n{}\n'.format(game.GAME_DESCRIPTION))
-    user_name = prompt.string('May I have your name? ')
-    print('Hello, {}!\n'.format(user_name))
-    for step in range(NUMBER_OF_STEPS):
-        (game_question, game_answer) = game.get_challenge()
-        user_answer = prompt.string(
-            'Question: {}\nYour answer: '.format(game_question))
-        if user_answer != game_answer:
-            print("'{}' is wrong answer ;(. Correct answer was '{}'.".format(
-                user_answer, game_answer))
-            print("Let's try again, {}!".format(user_name))
+    io.print_description(game.get_description())
+
+    user_name = io.get_user_name()
+    io.print_hello(user_name)
+
+    for _ in range(game.get_count_rounds()):
+        challenge = game.get_challenge()
+        game_question = challenge[QUESTION]
+        right_answer = challenge[ANSWER]
+
+        user_answer = io.get_answer(game_question)
+        if user_answer == right_answer:
+            io.print_correct()
+        else:
+            io.print_wrong_answer(user_answer, right_answer)
+            io.print_try_again(user_name)
             return
-        print('Correct!')
-    print('Congratulations, {}'.format(user_name))
+    io.print_congratulations(user_name)
