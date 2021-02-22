@@ -11,7 +11,7 @@ def welcome_user():
 
 def print_message(message):
     """Print message in console.
-    
+
     Args:
         message (string): message for output
     """

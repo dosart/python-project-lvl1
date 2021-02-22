@@ -35,7 +35,7 @@ def get_challenge():
     """
     start = randint(_start_min(), _start_max())
     step = randint(_step_min(), _step_max())
-    progression = [(start + (element* step))
+    progression = [(start + (element * step))
                    for element in range(_progression_length())]
 
     hidden_element_index = randint(0, _progression_length() - 1)

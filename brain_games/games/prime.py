@@ -35,7 +35,7 @@ def get_challenge():
     num = randint(_min, _max)
 
     answer = 'yes' if _is_prime(num) else 'no'
-    question = '{}'.format(num)
+    question = '{0}'.format(num)
 
     return {QUESTION: question, ANSWER: answer}
 
