@@ -1,11 +1,27 @@
 """GCD game engine."""
 
-import random
+from random import randint
+from math import gcd
 
-GAME_DESCRIPTION = 'Find the greatest common divisor of given numbers.'
+from brain_games.global_constants import QUESTION, ANSWER
 
-MIN_NUM = 1
-MAX_NUM = 100
+
+def get_description():
+    """Return description of game.
+
+    Returns:
+        description(string): description of game
+    """
+    return 'Find the greatest common divisor of given numbers.'
+
+
+def get_count_rounds():
+    """Return count of game round.
+
+    Returns:
+        num (int): count of game round
+    """
+    return 3
 
 
 def get_challenge():
@@ -18,29 +34,18 @@ def get_challenge():
         question{str} : Numbers;
         answer{str} : greatest common divider
     """
-    num1 = random.randint(MIN_NUM, MAX_NUM)
-    num2 = random.randint(MIN_NUM, MAX_NUM)
+    num1 = randint(_min(), _max())
+    num2 = randint(_min(), _max())
+
     answer = str(gcd(num1, num2))
-    question = '{} {}'.format(num1, num2)
-    return (question, answer)
+    question = '{0} {1}'.format(num1, num2)
+
+    return {QUESTION: question, ANSWER: answer}
 
 
-def gcd(num1, num2):
-    """Find greater common divider.
+def _min():
+    return 1
 
-    Find greater common divider
-    for two integer numbers
 
-    Args:
-        num1 (int): number one
-        num2 (int): number two
-
-    Returns:
-        int: Greater Common Divider
-    """
-    while num1 != num2:
-        if num1 > num2:
-            num1 -= num2
-        else:
-            num2 -= num1
-    return (num1)
+def _max():
+    return 30

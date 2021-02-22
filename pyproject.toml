@@ -1,16 +1,21 @@
 [tool.poetry]
 name = "hexlet-project"
-version = "1.1.0"
+version = "1.2.0"
 description = "first of four training projects on the Python Software Developer course on Hexlet.io"
 authors = ["Denis <Dysprosium92@ya.ru>"]
 license = "MIT License"
 packages = [
   { include = "brain_games" },
 ]
+classifiers = [
+  "Topic :: Games/Entertainment",
+]
 
 [tool.poetry.scripts]
 brain-games = "brain_games.scripts.brain_games:main"
 brain-even = "brain_games.scripts.brain_even:main"
+brain-calc = "brain_games.scripts.brain_calc:main"
+brain-gcd = "brain_games.scripts.brain_gcd:main"
 
 [tool.poetry.dependencies]
 python = "^3.8"
