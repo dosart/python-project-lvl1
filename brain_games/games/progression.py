@@ -1,14 +1,26 @@
 """Progression game engine."""
 
-import random
+from random import randint
 
-GAME_DESCRIPTION = 'What number is missing in the progression?'
+from brain_games.global_constants import QUESTION, ANSWER
 
-START_MIN = 1
-START_MAX = 20
-STEP_MIN = 1
-STEP_MAX = 10
-PROGERSSION_LENGTH = 10
+
+def get_description():
+    """Return description of game.
+
+    Returns:
+        description(string): description of game
+    """
+    return 'What number is missing in the progression?'
+
+
+def get_count_rounds():
+    """Return count of game round.
+
+    Returns:
+        num (int): count of game round
+    """
+    return 3
 
 
 def get_challenge():
@@ -21,12 +33,35 @@ def get_challenge():
         question{str} : arithmetic progression;
         answer{str} : hidden number
     """
-    start = random.randint(START_MIN, START_MAX)
-    step = random.randint(STEP_MIN, STEP_MAX)
-    progression = [(start + (ind * step))
-                   for ind in range(PROGERSSION_LENGTH)]
-    hidden_element_index = random.randint(0, PROGERSSION_LENGTH - 1)
+    start = randint(_start_min(), _start_max())
+    step = randint(_step_min(), _step_max())
+    progression = [(start + (element* step))
+                   for element in range(_progression_length())]
+
+    hidden_element_index = randint(0, _progression_length() - 1)
     answer = str(progression[hidden_element_index])
     progression[hidden_element_index] = '..'
-    question = ' '.join(str(ind) for ind in progression)
-    return (question, answer)
+
+    question = ' '.join(str(element) for element in progression)
+
+    return {QUESTION: question, ANSWER: answer}
+
+
+def _start_min():
+    return 1
+
+
+def _start_max():
+    return 10
+
+
+def _step_min():
+    return 1
+
+
+def _step_max():
+    return 10
+
+
+def _progression_length():
+    return 10
