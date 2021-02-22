@@ -1,4 +1,4 @@
-"""Global constants of program"""
+"""Global constants of program."""
 
 ANSWER = 0
 QUESTION = 1
