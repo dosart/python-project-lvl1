@@ -1,31 +1,30 @@
-name: Linter_CI
+name: Python CI
 
-on: 
+on:
   - push
   - pull_request
 
 jobs:
-
   build:
+  
     runs-on: ubuntu-latest
-    
     strategy:
-      matrix: 
+      matrix:
         python-version: [3.8]
         
     steps:
-      - uses: actions/checkout@2
+      - uses: actions/checkout@v2
       
-      - name: Set Up Python ${{matrix.python-version}}
+      - name: Set up Python ${{ matrix.python-version }}
         uses: actions/setup-python@v2
-        with: 
-          python-version: ${{matrix.python-version}}
+        with:
+          python-version: ${{ matrix.python-version }}
           
+        # make depends on poetry
       - name: Install dependencies
         run: |
           pip install poetry
           make install
-          
-      - name: Run Linter
-        run: make lint
-      
+      - name: Run linter
+        run: |
+          make lint
