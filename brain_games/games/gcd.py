@@ -31,8 +31,8 @@ def get_challenge():
     and calculate greatest common divider for them
 
     Returns:
-        question{str} : Numbers;
-        answer{str} : greatest common divider
+        key QUESTION (string):  Numbers;
+        key ANSWER (string): greatest common divider
     """
     num1 = randint(_min(), _max())
     num2 = randint(_min(), _max())
