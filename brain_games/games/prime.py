@@ -1,11 +1,26 @@
 """Prime game engine."""
 
-import random
+from random import randint
 
-GAME_DESCRIPTION = 'Answer "yes" if number prime otherwise answer "no".'
+from brain_games.global_constants import QUESTION, ANSWER
 
-MIN_NUM = 1
-MAX_NUM = 100
+
+def get_description():
+    """Return description of game.
+
+    Returns:
+        description(string): description of game
+    """
+    return 'Answer "yes" if number prime otherwise answer "no".'
+
+
+def get_count_rounds():
+    """Return count of game round.
+
+    Returns:
+        num (int): count of game round
+    """
+    return 3
 
 
 def get_challenge():
@@ -14,23 +29,33 @@ def get_challenge():
     generate random Number and check if a Number is Prime
 
     Returns:
-        question{str} : Number;
-        answer{str} : Prime status
+        key QUESTION (string): number;
+        key ANSWER (string): Prime status
     """
-    num = random.randint(MIN_NUM, MAX_NUM)
-    answer = 'yes' if is_prime(num) else 'no'
+    num = randint(_min, _max)
+
+    answer = 'yes' if _is_prime(num) else 'no'
     question = '{}'.format(num)
-    return (question, answer)
+
+    return {QUESTION: question, ANSWER: answer}
 
 
-def is_prime(num):
+def _min():
+    return 1
+
+
+def _max():
+    return 20
+
+
+def _is_prime(num):
     """Prime number check.
 
     Args:
         num (int): number to check
 
     Returns:
-        bool: True or False
+        bool: True if number is prime
     """
     if num < 2:
         return False
