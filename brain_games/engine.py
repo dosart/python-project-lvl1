@@ -1,6 +1,6 @@
 """Brain Games Engine."""
 
-from brain_games.global_constants import ANSWER, QUESTION
+from brain_games.global_constants import ANSWER, QUESTION, INTRO
 
 
 def run_game(game, io):
@@ -12,10 +12,12 @@ def run_game(game, io):
         game (object): create game question and answer
         io (object): input/output environment
     """
-    io.print_description(game.get_description())
+    io.print_message(INTRO)
 
     user_name = io.get_user_name()
     io.print_hello(user_name)
+
+    io.print_description(game.get_description())
 
     for _ in range(game.get_count_rounds()):
         challenge = game.get_challenge()

@@ -5,14 +5,6 @@ from random import randint
 from brain_games.global_constants import QUESTION, ANSWER
 
 
-def _min():
-    return 1
-
-
-def _max():
-    return 30
-
-
 def get_description():
     """Return description of game.
 
@@ -46,3 +38,11 @@ def get_challenge():
     question = '{0}'.format(num)
 
     return {QUESTION: question, ANSWER: answer}
+
+
+def _min():
+    return 1
+
+
+def _max():
+    return 30

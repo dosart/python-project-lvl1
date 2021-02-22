@@ -9,13 +9,22 @@ def welcome_user():
     print('Hello, {0}!'.format(name))
 
 
+def print_message(message):
+    """Print message in console.
+    
+    Args:
+        message (string): message for output
+    """
+    print(message)
+
+
 def print_description(description):
     """Print description of game in console.
 
     Args:
         description (string): description of game
     """
-    print('Welcome to the Brain Games!\n{0}\n'.format(description))
+    print('{0}\n'.format(description))
 
 
 def print_hello(user_name):
